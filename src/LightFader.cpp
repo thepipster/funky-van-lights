@@ -21,6 +21,10 @@ void LightFader::setup()
 
 void LightFader::update()
 {
+    //Serial.print(analogRead(m_pinSwitchUp));
+    //Serial.print("  ");
+    //Serial.println(analogRead(m_pinSwitchDown));
+
     int switchThreshold = 800;
     int m_threshold = 250;
     bool isFadingUp = (analogRead(m_pinSwitchUp) > switchThreshold) ? true : false;
@@ -66,21 +70,21 @@ void LightFader::update()
             m_lightVal -= 1;
         }
 
-        if (m_lightVal > 255){
-            m_lightVal = 255;
+        if (m_lightVal > 2550){
+            m_lightVal = 2550;
         }
         else if (m_lightVal < startLightVal){
             m_lightVal = startLightVal;
         }
 
-        Serial.print("Long press"); 
-        Serial.print(" UP: "); 
-        Serial.print(isFadingUp); 
-        Serial.print(" DWN: "); 
-        Serial.print(isFadingDown);
-        Serial.print(" Val: "); 
-        Serial.print(m_lightVal);
-        Serial.println();
+        //Serial.print("Long press"); 
+        //Serial.print(" UP: "); 
+        //Serial.print(isFadingUp); 
+        //Serial.print(" DWN: "); 
+        //Serial.print(isFadingDown);
+        //Serial.print(" Val: "); 
+        //Serial.print(m_lightVal);
+        //Serial.println();
 
         analogWrite(m_pinLight, m_lightVal/10);        
 
